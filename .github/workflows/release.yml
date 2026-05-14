@@ -32,6 +32,13 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Disable local Cargo proxy
+        shell: pwsh
+        run: |
+          if (Test-Path .cargo/config.toml) {
+            Remove-Item .cargo/config.toml
+          }
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
