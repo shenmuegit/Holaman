@@ -35,8 +35,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build frontend
+        run: pnpm build
+
       - name: Build executable
-        run: pnpm tauri build --no-bundle
+        run: cargo build --manifest-path src-tauri/Cargo.toml --release
 
       - name: Rename executable
         shell: pwsh
